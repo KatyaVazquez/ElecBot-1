@@ -27,7 +27,7 @@ const consultarPadron = async (cedula) => {
     cedula: cedula,
   };
 
-  const url = process.env.ANR_URL;
+  const url = process.env.ARN_URL;
   const options = {
     method: "POST",
     body: JSON.stringify(data),
@@ -50,9 +50,34 @@ const hola = async (cedula) => {
   }
 };
 
-const flowSecundario = addKeyword(["hola", "ola", "alo", "."]).addAnswer([
-  "Envia *Si* para iniciar el chatbot",
-]);
+const flowSecundario = addKeyword([
+  "a",
+  "b",
+  "c",
+  "d",
+  "e",
+  "f",
+  "g",
+  "h",
+  "i",
+  "j",
+  "k",
+  "l",
+  "m",
+  "n",
+  "o",
+  "p",
+  "q",
+  "r",
+  "s",
+  "t",
+  "u",
+  "v",
+  "w",
+  "x",
+  "y",
+  "z",
+]).addAnswer(["Envia *Si* para iniciar el chatbot"]);
 
 let res;
 
@@ -81,7 +106,7 @@ const flowPrincipal = addKeyword(["si"])
 
 const main = async () => {
   const adapterDB = new MockAdapter();
-  const adapterFlow = createFlow([flowSecundario, flowPrincipal]);
+  const adapterFlow = createFlow([flowPrincipal, flowSecundario]);
   const adapterProvider = createProvider(WebWhatsappProvider);
   createBot({
     flow: adapterFlow,
