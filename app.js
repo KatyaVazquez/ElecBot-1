@@ -6,6 +6,7 @@ const {
 } = require("@bot-whatsapp/bot");
 const dotenv = require("dotenv").config();
 const QRPortalWeb = require("@bot-whatsapp/portal");
+const axios = require("axios");
 const WebWhatsappProvider = require("@bot-whatsapp/provider/web-whatsapp");
 const MockAdapter = require("@bot-whatsapp/database/mock");
 
@@ -30,14 +31,14 @@ const consultarPadron = async (cedula) => {
   const url = process.env.ARN_URL;
   const options = {
     method: "POST",
-    body: JSON.stringify(data),
+    data: JSON.stringify(data),
     headers: {
       "Content-Type": "application/json",
     },
   };
 
-  const response = await fetch(url, options);
-  const resultado = await response.json();
+  const response = await axios(url, options);
+  const resultado = response.data;
   return resultado;
 };
 
